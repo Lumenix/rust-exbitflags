@@ -12,4 +12,7 @@ license = "ASL2.0"
 keywords = ["macro", "bitflag", "sugar", "syntax",]
 
 [lib]
+name = "exbitflags"
+path = "src/lib.rs"
+crate-type = ["dylib"]
 plugin = true

@@ -1,7 +1,6 @@
 #![crate_type = "lib"]
 #![crate_name = "exbitflags"]
 
-#![feature(macro_rules)]
 #[doc(hidden)]
 
 /// Helper! Expands to:
@@ -13,7 +12,7 @@ macro_rules! ebf_flag(
 	($flag:ident, $v: expr) => (
 		static $flag = $v,
 	);
-)
+);
 
 /// Helper! Given a list of identifiers,
 /// it creates flags for each one according to the series defined by: 2^n.

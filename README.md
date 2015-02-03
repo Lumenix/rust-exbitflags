@@ -17,7 +17,7 @@ exbitflags uses semver, so only major versions break backward compatibility. Whi
 
 ```rust
 // Loads exbitflags.
-#[phase(plugin)] extern crate exbitflags;
+#[macro_use] extern crate exbitflags;
 
 // Creates bitflags named Operations with type u32
 // with flags ADD = 0x1, DELETE = 0x2, MODIFY = 0x4.

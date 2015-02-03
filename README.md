@@ -1,4 +1,4 @@
-[![Cargo]][url: Cargo] [![License]][url: License] [![Semver]][url: Semver] [![Gittip]][url: Gittip]
+[![Build Status]][url: Build Status] [![Cargo]][url: Cargo] [![License]][url: License] [![Semver]][url: Semver] [![Gittip]][url: Gittip]
 
 # rust-exbitflags
 
@@ -55,6 +55,8 @@ Thanks to [Daniel Keep](https://github.com/DanielKeep) for his [quick intro to m
 
 <!-- references -->
 
+[Build Status]: http://img.shields.io/travis/Lumenix/rust-exbitflags.svg?style=flat
+[url: Build Status]: https://travis-ci.org/Lumenix/rust-exbitflags
 [Cargo]: http://img.shields.io/badge/cargo-0.1.0-orange.svg?style=flat
 [url: Cargo]: @TODO
 [License]: http://img.shields.io/badge/license-ASL2.0-blue.svg?style=flat

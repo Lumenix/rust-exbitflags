@@ -4,6 +4,8 @@
 
 > Macro simplifying bitflag declaration
 
+Highly experimental, doesn't work at the moment.
+
 ## Install
 
 ```toml

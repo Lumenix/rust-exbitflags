@@ -49,8 +49,8 @@ macro_rules! macro_seqc_pat {
 // ebf!
 //================================================================================
 
-macro_rules! ebf_excl {
-	( $( $thing:expr ),+ ) => { 1 << (macro_seqc!( $thing )) };
+macro_rules! ebf_shiftinc {
+	( $( $thing:expr ), + ) => { 1 << (macro_seqc!( $thing )) };
 }
 
 /**
@@ -71,6 +71,18 @@ macro_rules! ebf_flags {
 
 	( $val:expr, $( $flags:ident ), + ) => {
 		ebf_flags!( $val, $( $flags ), + );
+	};
+}
+
+#[macro_export]
+macro_rules! ebf_flags2 {
+	( $val:expr, $flag:ident ) => {
+		const $flag:u32 = 1 << ($val);
+	};
+
+	( $val:expr, $flag:ident, $($tail:ident), + ) => {
+		ebf_flags2! { $val, $flag }
+		ebf_flags2! { $val + 1, $($tail), + }
 	};
 }
 
@@ -106,23 +118,19 @@ macro_rules! ebf {
 	};
 
 	( $( #[$attr:meta] )* $BitFlags:ident: $T:ty {
-		$( $( #[$Flag_attr:meta] )* $Flag:ident ),+
+		$( $Flag:ident ),+
 	} ) => {
 		bitflags! {
 			$( #[$attr] )*
-			flags $BitFlags: $T {
-				$( $( #[$Flag_attr] )* $Flag = ebf_excl!( $( $( #[$Flag_attr] )* $Flag ),+ ) ),+
-			}
+			flags $BitFlags: $T
 		}
-	};
-	( $( #[$attr:meta] )* $BitFlags:ident: $T:ty {
-		$( $( #[$Flag_attr:meta] )* $Flag:ident ),+,
-	} ) => {
-		bitflags! {
-			$( #[$attr] )*
-			flags $BitFlags: $T {
-				$( $( #[$Flag_attr] )* const $Flag = $value ),+
-			}
-		}
+		/*
+		bitflags_values! { $BitFlags {
+			$( const $Flag = 1 << (macro_seqc!( $( $Flag ),+ )) ),+
+		} }
+		*/
+		bitflags_values! { $BitFlags {
+			ebf_flags2!( 0, $( $Flag:ident ), + )
+		} }
 	};
 }

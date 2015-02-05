@@ -15,6 +15,5 @@ keywords = ["macro", "bitflag", "sugar", "syntax"]
 
 name = "exbitflags"
 
-[dependencies]
-
-bitflags = "0.1"
+[dependencies.bitflags]
+git = "https://github.com/Lumenix/bitflags.git"
